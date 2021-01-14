@@ -1,0 +1,322 @@
+I201231 23:02:52.975853 1 util/log/sync_buffer.go:195 ⋮ [config] file created at: 2020/12/31 23:02:52
+I201231 23:02:52.975890 1 util/log/sync_buffer.go:195 ⋮ [config] running on machine: ‹TK-Pad›
+I201231 23:02:52.975918 1 util/log/sync_buffer.go:195 ⋮ [config] binary: CockroachDB CCL v20.2.3 (x86_64-unknown-linux-gnu, built 2020/12/14 18:33:39, go1.13.14)
+I201231 23:02:52.975943 1 util/log/sync_buffer.go:195 ⋮ [config] arguments: ‹[cockroach start-single-node --insecure --listen-addr=localhost:26257 --http-addr=localhost:8080]›
+I201231 23:02:52.975986 1 util/log/sync_buffer.go:195 ⋮ [config] line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+W201231 23:02:52.975525 1 cli/start.go:1139 ⋮ ALL SECURITY CONTROLS HAVE BEEN DISABLED!
+
+This mode is intended for non-production testing only.
+
+In this mode:
+- Your cluster is open to any client that can access ‹localhost›.
+- Intruders with access to your machine or network can observe client-server traffic.
+- Intruders can log in without password and read or write any data in the cluster.
+- Intruders can consume all your server's resources and cause unavailability.
+I201231 23:02:52.976314 1 cli/start.go:1149 ⋮ To start a secure server without mandating TLS for clients,
+consider --accept-sql-without-tls instead. For other options, see:
+
+- ‹https://go.crdb.dev/issue-v/53404/v20.2›
+- https://www.cockroachlabs.com/docs/v20.2/secure-a-cluster.html
+I201231 23:02:52.977513 1 server/status/recorder.go:605 ⋮ ‹available memory from cgroups is unsupported, using system memory 15 GiB instead: can't read available memory from cgroup v2 at /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: open /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: no such file or directory›
+W201231 23:02:52.977617 1 cli/start.go:983 ⋮ ‹Using the default setting for --cache (128 MiB).›
+‹  A significantly larger value is usually needed for good performance.›
+‹  If you have a dedicated server a reasonable setting is --cache=.25 (3.8 GiB).›
+I201231 23:02:52.978745 1 server/status/recorder.go:605 ⋮ ‹available memory from cgroups is unsupported, using system memory 15 GiB instead: can't read available memory from cgroup v2 at /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: open /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: no such file or directory›
+I201231 23:02:52.978819 1 cli/start.go:1164 ⋮ ‹CockroachDB CCL v20.2.3 (x86_64-unknown-linux-gnu, built 2020/12/14 18:33:39, go1.13.14)›
+I201231 23:02:52.981312 1 server/status/recorder.go:605 ⋮ ‹available memory from cgroups is unsupported, using system memory 15 GiB instead: can't read available memory from cgroup v2 at /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: open /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: no such file or directory›
+I201231 23:02:52.981367 1 server/config.go:434 ⋮ system total memory: ‹15 GiB›
+I201231 23:02:52.981417 1 server/config.go:436 ⋮ server configuration:
+‹max offset             500000000›
+‹cache size             128 MiB›
+‹SQL memory pool size   3.8 GiB›
+‹scan interval          10m0s›
+‹scan min idle time     10ms›
+‹scan max idle time     1s›
+‹event log enabled      true›
+I201231 23:02:52.981544 1 cli/start.go:961 ⋮ using local environment variables: ‹COCKROACH_BACKGROUND_RESTART=1›
+I201231 23:02:52.981585 1 cli/start.go:968 ⋮ process identity: ‹uid 1000 euid 1000 gid 1000 egid 1000›
+I201231 23:02:52.987707 1 cli/start.go:504 ⋮ GEOS loaded from directory ‹/usr/local/lib/cockroach›
+I201231 23:02:52.987802 1 cli/start.go:509 ⋮ starting cockroach node
+I201231 23:02:53.009337 103 server/server.go:782 ⋮ [n?] monitoring forward clock jumps based on server.clock.forward_jump_check_enabled
+I201231 23:02:53.065770 103 server/config.go:625 ⋮ [n?] 1 storage engine‹› initialized
+I201231 23:02:53.065799 103 server/config.go:628 ⋮ [n?] ‹Pebble cache size: 128 MiB›
+I201231 23:02:53.065811 103 server/config.go:628 ⋮ [n?] ‹store 0: RocksDB, max size 0 B, max open file limit 10000›
+I201231 23:02:53.069163 180 server/server.go:1416 ⋮ [n?] connecting to gossip network to verify cluster ID ‹"55e6c439-0264-4579-bb6d-df06d1461430"›
+I201231 23:02:53.070370 103 gossip/gossip.go:403 ⋮ [n1] NodeDescriptor set to ‹node_id:1 address:<network_field:"tcp" address_field:"localhost:26257" > attrs:<> locality:<> ServerVersion:<major_val:20 minor_val:2 patch:0 unstable:0 > build_tag:"v20.2.3" started_at:1609455773070357249 cluster_name:"" sql_address:<network_field:"tcp" address_field:"localhost:26257" >›
+I201231 23:02:53.075608 180 server/server.go:1419 ⋮ [n1] node connected via gossip
+W201231 23:02:53.075561 272 kv/kvserver/replica_range_lease.go:555 ⋮ [n1,s1,r6/1:‹/Table/{SystemCon…-11}›] can't determine lease status of (n1,s1):1 due to node liveness error: node not in the liveness table
+(1) attached stack trace
+  -- stack trace:
+  | github.com/cockroachdb/cockroach/pkg/kv/kvserver.init
+  | 	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/node_liveness.go:45
+  | runtime.doInit
+  | 	/usr/local/go/src/runtime/proc.go:5228
+  | runtime.doInit
+  | 	/usr/local/go/src/runtime/proc.go:5223
+  | runtime.doInit
+  | 	/usr/local/go/src/runtime/proc.go:5223
+  | runtime.doInit
+  | 	/usr/local/go/src/runtime/proc.go:5223
+  | runtime.doInit
+  | 	/usr/local/go/src/runtime/proc.go:5223
+  | runtime.main
+  | 	/usr/local/go/src/runtime/proc.go:190
+  | runtime.goexit
+  | 	/usr/local/go/src/runtime/asm_amd64.s:1357
+Wraps: (2) node not in the liveness table
+Error types: (1) *withstack.withStack (2) *errutil.leafError
+W201231 23:02:53.075793 272 kv/kvserver/store.go:1704 ⋮ [n1,s1,r6/1:‹/Table/{SystemCon…-11}›] could not gossip system config: ‹[NotLeaseHolderError] r6: replica (n1,s1):1 not lease holder; lease holder unknown›
+(1) ‹[NotLeaseHolderError] r6: replica (n1,s1):1 not lease holder; lease holder unknown›
+Error types: (1) *roachpb.NotLeaseHolderError
+I201231 23:02:53.076515 103 server/node.go:430 ⋮ [n1] initialized store [n1,s1]: disk (capacity=329 GiB, available=286 GiB, used=53 MiB, logicalBytes=331 MiB), ranges=36, leases=0, queries=0.00, writes=0.00, bytesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=10013.00 p90=64839.00 pMax=346310826.00}, writesPerReplica={p10=0.00 p25=0.00 p50=0.00 p75=0.00 p90=0.00 pMax=0.00}
+I201231 23:02:53.076697 103 kv/kvserver/stores.go:236 ⋮ [n1] read 0 node addresses from persistent storage
+I201231 23:02:53.077506 103 server/node.go:489 ⋮ [n1] started with engine type ‹2›
+I201231 23:02:53.077563 103 server/node.go:491 ⋮ [n1] started with attributes ‹[]›
+I201231 23:02:53.077641 103 server/goroutinedumper/goroutinedumper.go:120 ⋮ [n1] writing goroutine dumps to ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/goroutine_dump›
+I201231 23:02:53.077672 103 server/heapprofiler/heapprofiler.go:49 ⋮ [n1] writing go heap profiles to ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler› at least every 1h0m0s
+I201231 23:02:53.077697 103 server/heapprofiler/cgoprofiler.go:53 ⋮ [n1] to enable jmalloc profiling: "export MALLOC_CONF=prof:true" or "ln -s prof:true /etc/malloc.conf"
+I201231 23:02:53.077706 103 server/heapprofiler/statsprofiler.go:54 ⋮ [n1] writing memory stats to ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler› at last every 1h0m0s
+I201231 23:02:53.077726 103 server/server.go:1536 ⋮ [n1] starting http server at ‹127.0.0.1:8080› (use: ‹localhost:8080›)
+I201231 23:02:53.077748 103 server/server.go:1543 ⋮ [n1] starting grpc/postgres server at ‹127.0.0.1:26257›
+I201231 23:02:53.077769 103 server/server.go:1544 ⋮ [n1] advertising CockroachDB node at ‹localhost:26257›
+I201231 23:02:53.091061 103 sql/sqlliveness/slinstance/slinstance.go:252 ⋮ [n1] starting SQL liveness instance
+I201231 23:02:53.091411 291 sql/temporary_schema.go:497 ⋮ [n1] running temporary object cleanup background job
+I201231 23:02:53.091853 103 server/server_sql.go:753 ⋮ [n1] done ensuring all necessary migrations have run
+I201231 23:02:53.091951 103 server/server.go:1876 ⋮ [n1] serving sql connections
+I201231 23:02:53.092412 103 cli/start.go:670 ⋮ [config] clusterID: ‹55e6c439-0264-4579-bb6d-df06d1461430›
+I201231 23:02:53.092495 103 cli/start.go:680 ⋮ node startup completed:
+CockroachDB node starting at 2020-12-31 23:02:53.09213162 +0000 UTC (took 0.1s)
+build:               CCL v20.2.3 @ 2020/12/14 18:33:39 (go1.13.14)
+webui:               ‹http://localhost:8080›
+sql:                 ‹postgresql://root@localhost:26257?sslmode=disable›
+RPC client flags:    ‹cockroach <client cmd> --host=localhost:26257 --insecure›
+logs:                ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs›
+temp dir:            ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/cockroach-temp430681165›
+external I/O path:   ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/extern›
+store[0]:            ‹path=/home/erikaosgue/erika_work/goland/truora_project/cockroach-data›
+storage engine:      pebble
+status:              restarted pre-existing node
+clusterID:           ‹55e6c439-0264-4579-bb6d-df06d1461430›
+nodeID:              1
+I201231 23:02:53.092617 305 jobs/job_scheduler.go:346 ⋮ [n1] waiting 2m0s before scheduled jobs daemon start
+I201231 23:02:53.109095 291 sql/temporary_schema.go:532 ⋮ [n1] found 0 temporary schemas
+I201231 23:02:53.109143 291 sql/temporary_schema.go:535 ⋮ [n1] early exiting temporary schema cleaner as no temporary schemas were found
+I201231 23:02:53.109160 291 sql/temporary_schema.go:536 ⋮ [n1] completed temporary object cleanup job
+I201231 23:02:53.109362 291 sql/temporary_schema.go:614 ⋮ [n1] temporary object cleaner next scheduled to run at 2020-12-31 23:32:53.091211781 +0000 UTC
+I201231 23:02:53.112742 322 server/server_update.go:55 ⋮ [n1] no need to upgrade, cluster already at the newest version
+I201231 23:02:53.116493 97 sql/sqlliveness/slstorage/slstorage.go:342 ⋮ [n1] inserted sqlliveness session ‹6cceed8bb31c4d25af444cf10a63a05b›
+I201231 23:02:53.116561 97 sql/sqlliveness/slinstance/slinstance.go:143 ⋮ [n1] created new SQL liveness session ‹6cceed8bb31c4d25af444cf10a63a05b›
+I201231 23:02:53.122060 95 sql/event_log.go:162 ⋮ [n1] Event: ‹"node_restart"›, target: 1, info: ‹{Descriptor:{NodeID:1 Address:localhost:26257 Attrs: Locality: ServerVersion:20.2 BuildTag:v20.2.3 StartedAt:1609455773070357249 LocalityAddress:[] ClusterName: SQLAddress:localhost:26257} ClusterID:55e6c439-0264-4579-bb6d-df06d1461430 StartedAt:1609455773070357249 LastUp:1609455610856928539}›
+I201231 23:02:55.540311 69 gossip/gossip.go:1508 ⋮ [n1] node has connected to cluster via gossip
+I201231 23:02:55.541029 69 kv/kvserver/stores.go:255 ⋮ [n1] wrote 0 node addresses to persistent storage
+I201231 23:03:03.078553 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 236 MiB RSS, 218 goroutines, 22 MiB/36 MiB/44 MiB GO alloc/idle/total, 102 MiB/123 MiB CGO alloc/total, 0.0 CGO/sec, 0.0/0.0 %(u/s)time, 0.0 %gc (179x), 10 KiB/8.6 KiB (r/w)net
+I201231 23:03:09.679760 454 kv/kvserver/replica_consistency.go:257 ⋮ [n1,consistencyChecker,s1,r4/1:‹/System{/tsd-tse}›] triggering stats recomputation to resolve delta of {ContainsEstimates:11300196 LastUpdateNanos:1609455773083231174 IntentAge:0 GCBytesAge:0 LiveBytes:207047672 LiveCount:-21438 KeyBytes:-1084914 KeyCount:-21438 ValBytes:208132586 ValCount:-21438 IntentBytes:0 IntentCount:0 SysBytes:0 SysCount:0 AbortSpanBytes:0}
+I201231 23:03:13.081554 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 291 MiB RSS, 216 goroutines, 19 MiB/38 MiB/48 MiB GO alloc/idle/total, 151 MiB/176 MiB CGO alloc/total, 1974.6 CGO/sec, 44.2/11.6 %(u/s)time, 0.0 %gc (148x), 11 KiB/11 KiB (r/w)net
+I201231 23:03:13.082727 280 kv/kvserver/store.go:2638 ⋮ [n1,s1] sstables (read amplification = 1):
+‹6 [ 19M 5 ]: 4M[4] 3M›
+I201231 23:03:13.083288 280 kv/kvserver/store.go:2639 ⋮ [n1,s1] ‹›
+‹__level_____count____size___score______in__ingest(sz_cnt)____move(sz_cnt)___write(sz_cnt)____read___r-amp___w-amp›
+‹    WAL         2   529 K       -   527 K       -       -       -       -   529 K       -       -       -     1.0›
+‹      0         0     0 B    0.00     0 B     0 B       0     0 B       0     0 B       0     0 B       0     0.0›
+‹      1         0     0 B    0.00     0 B     0 B       0     0 B       0     0 B       0     0 B       0     0.0›
+‹      2         0     0 B    0.00     0 B     0 B       0     0 B       0     0 B       0     0 B       0     0.0›
+‹      3         0     0 B    0.00     0 B     0 B       0     0 B       0     0 B       0     0 B       0     0.0›
+‹      4         0     0 B    0.00     0 B     0 B       0     0 B       0     0 B       0     0 B       0     0.0›
+‹      5         0     0 B    0.00     0 B     0 B       0     0 B       0     0 B       0     0 B       0     0.0›
+‹      6         5    19 M       -    89 K     0 B       0     0 B       0    19 M       5    19 M       1   218.0›
+‹  total         5    19 M       -   529 K     0 B       0     0 B       0    19 M       5    19 M       1    37.5›
+‹  flush         0›
+‹compact         1     0 B          (size == estimated-debt)›
+‹ memtbl         2   4.3 M›
+‹zmemtbl         0     0 B›
+‹   ztbl         0     0 B›
+‹ bcache     4.4 K   123 M   26.3%  (score == hit-rate)›
+‹ tcache         5   3.0 K   99.2%  (score == hit-rate)›
+‹ titers         0›
+‹ filter         -       -   88.3%  (score == utility)›
+I201231 23:03:14.544233 96 sql/sqlliveness/slstorage/slstorage.go:320 ⋮ [n1] deleted 1 expired SQL liveness sessions
+I201231 23:03:23.080757 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 292 MiB RSS, 214 goroutines, 27 MiB/29 MiB/48 MiB GO alloc/idle/total, 151 MiB/176 MiB CGO alloc/total, 0.6 CGO/sec, 1.9/0.6 %(u/s)time, 0.0 %gc (0x), 3.3 KiB/4.4 KiB (r/w)net
+I201231 23:03:33.082247 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 292 MiB RSS, 215 goroutines, 26 MiB/31 MiB/48 MiB GO alloc/idle/total, 151 MiB/176 MiB CGO alloc/total, 0.2 CGO/sec, 1.9/1.1 %(u/s)time, 0.0 %gc (1x), 12 KiB/7.7 KiB (r/w)net
+I201231 23:03:43.081165 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 292 MiB RSS, 215 goroutines, 20 MiB/36 MiB/48 MiB GO alloc/idle/total, 151 MiB/176 MiB CGO alloc/total, 0.4 CGO/sec, 2.5/0.8 %(u/s)time, 0.0 %gc (1x), 38 KiB/44 KiB (r/w)net
+I201231 23:03:53.078022 281 gossip/gossip.go:568 ⋮ [n1] gossip status (ok, 1 node‹›)
+gossip client (0/3 cur/max conns)
+gossip server (0/3 cur/max conns, infos 0/0 sent/received, bytes 0B/0B sent/received)
+gossip connectivity
+  n1 [sentinel];
+I201231 23:03:53.081604 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 292 MiB RSS, 218 goroutines, 29 MiB/28 MiB/48 MiB GO alloc/idle/total, 151 MiB/176 MiB CGO alloc/total, 0.1 CGO/sec, 2.5/0.5 %(u/s)time, 0.0 %gc (0x), 16 KiB/19 KiB (r/w)net
+I201231 23:04:03.080303 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 292 MiB RSS, 214 goroutines, 26 MiB/30 MiB/49 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 1.1 CGO/sec, 2.0/1.0 %(u/s)time, 0.0 %gc (1x), 34 KiB/38 KiB (r/w)net
+I201231 23:04:13.081998 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 293 MiB RSS, 214 goroutines, 34 MiB/23 MiB/49 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 0.1 CGO/sec, 2.2/0.6 %(u/s)time, 0.0 %gc (0x), 16 KiB/20 KiB (r/w)net
+I201231 23:04:23.082238 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 293 MiB RSS, 214 goroutines, 27 MiB/29 MiB/51 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 0.1 CGO/sec, 2.3/0.7 %(u/s)time, 0.0 %gc (1x), 19 KiB/21 KiB (r/w)net
+I201231 23:04:33.082202 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 294 MiB RSS, 215 goroutines, 35 MiB/22 MiB/51 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 0.1 CGO/sec, 2.2/0.6 %(u/s)time, 0.0 %gc (0x), 11 KiB/15 KiB (r/w)net
+I201231 23:04:43.082320 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 295 MiB RSS, 215 goroutines, 27 MiB/29 MiB/52 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 0.7 CGO/sec, 2.2/0.7 %(u/s)time, 0.0 %gc (1x), 15 KiB/26 KiB (r/w)net
+I201231 23:04:53.077801 281 gossip/gossip.go:568 ⋮ [n1] gossip status (ok, 1 node‹›)
+gossip client (0/3 cur/max conns)
+gossip server (0/3 cur/max conns, infos 0/0 sent/received, bytes 0B/0B sent/received)
+I201231 23:04:53.081851 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 295 MiB RSS, 215 goroutines, 36 MiB/21 MiB/52 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 0.1 CGO/sec, 2.6/0.5 %(u/s)time, 0.0 %gc (0x), 19 KiB/24 KiB (r/w)net
+I201231 23:05:03.082689 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 296 MiB RSS, 214 goroutines, 31 MiB/25 MiB/52 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 0.1 CGO/sec, 2.9/0.8 %(u/s)time, 0.0 %gc (1x), 22 KiB/38 KiB (r/w)net
+I201231 23:05:13.081647 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 296 MiB RSS, 214 goroutines, 39 MiB/18 MiB/52 MiB GO alloc/idle/total, 151 MiB/177 MiB CGO alloc/total, 0.1 CGO/sec, 1.9/0.8 %(u/s)time, 0.0 %gc (0x), 29 KiB/32 KiB (r/w)net
+I201231 23:05:23.082685 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 299 MiB RSS, 214 goroutines, 27 MiB/28 MiB/56 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 34.1 CGO/sec, 2.4/0.5 %(u/s)time, 0.0 %gc (1x), 5.1 KiB/6.5 KiB (r/w)net
+I201231 23:05:33.081969 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 299 MiB RSS, 215 goroutines, 35 MiB/21 MiB/56 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.7/0.5 %(u/s)time, 0.0 %gc (0x), 9.5 KiB/6.5 KiB (r/w)net
+I201231 23:05:43.082889 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 300 MiB RSS, 215 goroutines, 24 MiB/31 MiB/55 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.1/0.4 %(u/s)time, 0.0 %gc (1x), 6.1 KiB/4.8 KiB (r/w)net
+I201231 23:05:53.077923 281 gossip/gossip.go:568 ⋮ [n1] gossip status (ok, 1 node‹›)
+gossip client (0/3 cur/max conns)
+gossip server (0/3 cur/max conns, infos 0/0 sent/received, bytes 0B/0B sent/received)
+I201231 23:05:53.083117 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 300 MiB RSS, 215 goroutines, 32 MiB/25 MiB/55 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.8/0.6 %(u/s)time, 0.0 %gc (0x), 13 KiB/8.5 KiB (r/w)net
+I201231 23:06:03.082406 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 301 MiB RSS, 214 goroutines, 24 MiB/32 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 12.9 CGO/sec, 2.3/1.0 %(u/s)time, 0.0 %gc (1x), 4.4 KiB/3.9 KiB (r/w)net
+I201231 23:06:13.083508 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 301 MiB RSS, 214 goroutines, 32 MiB/25 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.9/0.4 %(u/s)time, 0.0 %gc (0x), 3.8 KiB/3.5 KiB (r/w)net
+I201231 23:06:23.082103 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 301 MiB RSS, 214 goroutines, 23 MiB/32 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.2/0.5 %(u/s)time, 0.0 %gc (1x), 14 KiB/11 KiB (r/w)net
+I201231 23:06:33.083860 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 301 MiB RSS, 215 goroutines, 31 MiB/26 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.0/0.4 %(u/s)time, 0.0 %gc (0x), 2.5 KiB/2.2 KiB (r/w)net
+I201231 23:06:43.082432 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 302 MiB RSS, 215 goroutines, 21 MiB/33 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.1/0.7 %(u/s)time, 0.0 %gc (1x), 3.5 KiB/3.2 KiB (r/w)net
+I201231 23:06:53.077931 281 gossip/gossip.go:568 ⋮ [n1] gossip status (ok, 1 node‹›)
+gossip client (0/3 cur/max conns)
+gossip server (0/3 cur/max conns, infos 0/0 sent/received, bytes 0B/0B sent/received)
+I201231 23:06:53.084430 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 302 MiB RSS, 216 goroutines, 30 MiB/26 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.0/0.4 %(u/s)time, 0.0 %gc (0x), 14 KiB/10 KiB (r/w)net
+I201231 23:07:03.084288 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 302 MiB RSS, 214 goroutines, 23 MiB/32 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.4/0.3 %(u/s)time, 0.0 %gc (1x), 3.8 KiB/3.3 KiB (r/w)net
+I201231 23:07:13.084510 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 303 MiB RSS, 214 goroutines, 31 MiB/26 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.9/0.4 %(u/s)time, 0.0 %gc (0x), 8.8 KiB/7.2 KiB (r/w)net
+I201231 23:07:23.085427 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 303 MiB RSS, 215 goroutines, 20 MiB/34 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.7/0.5 %(u/s)time, 0.0 %gc (1x), 9.0 KiB/7.7 KiB (r/w)net
+I201231 23:07:33.085515 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 303 MiB RSS, 215 goroutines, 29 MiB/27 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.0/0.6 %(u/s)time, 0.0 %gc (0x), 15 KiB/9.5 KiB (r/w)net
+W201231 23:07:43.077861 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:07:43.085008 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 304 MiB RSS, 215 goroutines, 20 MiB/34 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.4/0.4 %(u/s)time, 0.0 %gc (1x), 3.3 KiB/3.1 KiB (r/w)net
+W201231 23:07:43.085181 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_07_43.085.318267392.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_07_43.085.318267392.txt›: no such file or directory
+E201231 23:07:43.105544 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:07:53.077832 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:07:53.077886 281 gossip/gossip.go:568 ⋮ [n1] gossip status (ok, 1 node‹›)
+gossip client (0/3 cur/max conns)
+gossip server (0/3 cur/max conns, infos 0/0 sent/received, bytes 0B/0B sent/received)
+W201231 23:07:53.078221 281 server/node.go:673 ⋮ [n1] problem getting store descriptor for store ‹cluster_id:55e6c439-0264-4579-bb6d-df06d1461430 node_id:1 store_id:1›: no such file or directory
+I201231 23:07:53.085445 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 304 MiB RSS, 216 goroutines, 28 MiB/28 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.1/0.7 %(u/s)time, 0.0 %gc (0x), 8.3 KiB/5.6 KiB (r/w)net
+W201231 23:07:53.085578 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_07_53.085.318857216.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_07_53.085.318857216.txt›: no such file or directory
+E201231 23:07:53.098157 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:08:03.077915 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:08:03.088480 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 304 MiB RSS, 216 goroutines, 22 MiB/33 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.5 CGO/sec, 3.0/0.7 %(u/s)time, 0.0 %gc (1x), 11 KiB/9.8 KiB (r/w)net
+E201231 23:08:03.112917 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:08:13.077755 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:08:13.085811 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 305 MiB RSS, 216 goroutines, 30 MiB/27 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.6/0.5 %(u/s)time, 0.0 %gc (0x), 3.3 KiB/3.1 KiB (r/w)net
+W201231 23:08:13.085925 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_13.085.319578112.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_13.085.319578112.txt›: no such file or directory
+E201231 23:08:13.100320 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:08:23.077792 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:08:23.086041 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 305 MiB RSS, 214 goroutines, 36 MiB/21 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.7/0.6 %(u/s)time, 0.0 %gc (0x), 4.8 KiB/5.5 KiB (r/w)net
+W201231 23:08:23.086159 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_23.086.319840256.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_23.086.319840256.txt›: no such file or directory
+E201231 23:08:23.108369 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:08:33.077798 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:08:33.087354 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 305 MiB RSS, 215 goroutines, 26 MiB/30 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.2/0.9 %(u/s)time, 0.0 %gc (1x), 13 KiB/7.0 KiB (r/w)net
+W201231 23:08:33.087574 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_33.087.320106496.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_33.087.320106496.txt›: no such file or directory
+E201231 23:08:33.100523 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:08:43.077830 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:08:43.087575 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 306 MiB RSS, 215 goroutines, 33 MiB/24 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.8/0.6 %(u/s)time, 0.0 %gc (0x), 1.7 MiB/102 KiB (r/w)net
+W201231 23:08:43.087743 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_43.087.320634880.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_43.087.320634880.txt›: no such file or directory
+E201231 23:08:43.113882 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:08:53.077879 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:08:53.077896 281 gossip/gossip.go:568 ⋮ [n1] gossip status (ok, 1 node‹›)
+gossip client (0/3 cur/max conns)
+gossip server (0/3 cur/max conns, infos 0/0 sent/received, bytes 0B/0B sent/received)
+W201231 23:08:53.078007 281 server/node.go:673 ⋮ [n1] problem getting store descriptor for store ‹cluster_id:55e6c439-0264-4579-bb6d-df06d1461430 node_id:1 store_id:1›: no such file or directory
+I201231 23:08:53.085475 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 306 MiB RSS, 215 goroutines, 22 MiB/32 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.9/0.6 %(u/s)time, 0.0 %gc (1x), 2.5 MiB/160 KiB (r/w)net
+W201231 23:08:53.085545 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_53.085.320905216.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_08_53.085.320905216.txt›: no such file or directory
+E201231 23:08:53.094724 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:09:03.077888 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:09:03.089980 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 306 MiB RSS, 214 goroutines, 32 MiB/25 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.4/0.7 %(u/s)time, 0.0 %gc (0x), 11 KiB/17 KiB (r/w)net
+W201231 23:09:03.090173 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_03.090.321179648.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_03.090.321179648.txt›: no such file or directory
+E201231 23:09:03.110724 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:09:13.077822 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:09:13.087898 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 307 MiB RSS, 214 goroutines, 22 MiB/32 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 3.1/0.4 %(u/s)time, 0.0 %gc (1x), 15 KiB/15 KiB (r/w)net
+W201231 23:09:13.088131 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_13.088.321449984.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_13.088.321449984.txt›: no such file or directory
+E201231 23:09:13.099892 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:09:23.077878 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:09:23.087883 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 307 MiB RSS, 214 goroutines, 29 MiB/27 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.9/0.6 %(u/s)time, 0.0 %gc (0x), 60 KiB/14 KiB (r/w)net
+E201231 23:09:23.095465 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:09:33.077842 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:09:33.089166 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 307 MiB RSS, 215 goroutines, 20 MiB/34 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.3/1.0 %(u/s)time, 0.0 %gc (1x), 5.2 KiB/5.8 KiB (r/w)net
+W201231 23:09:33.089456 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_33.089.321716224.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_33.089.321716224.txt›: no such file or directory
+E201231 23:09:33.112242 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:09:43.077839 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:09:43.088494 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 307 MiB RSS, 215 goroutines, 28 MiB/27 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 2.1/0.6 %(u/s)time, 0.0 %gc (0x), 5.0 KiB/8.2 KiB (r/w)net
+W201231 23:09:43.088639 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_43.088.322248704.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_43.088.322248704.txt›: no such file or directory
+E201231 23:09:43.107660 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:09:53.077967 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:09:53.078084 281 gossip/gossip.go:568 ⋮ [n1] gossip status (ok, 1 node‹›)
+gossip client (0/3 cur/max conns)
+gossip server (0/3 cur/max conns, infos 0/0 sent/received, bytes 0B/0B sent/received)
+W201231 23:09:53.078458 281 server/node.go:673 ⋮ [n1] problem getting store descriptor for store ‹cluster_id:55e6c439-0264-4579-bb6d-df06d1461430 node_id:1 store_id:1›: no such file or directory
+I201231 23:09:53.088845 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 308 MiB RSS, 215 goroutines, 35 MiB/22 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 1.9/0.7 %(u/s)time, 0.0 %gc (0x), 17 KiB/11 KiB (r/w)net
+W201231 23:09:53.088973 285 server/heapprofiler/statsprofiler.go:78 ⋮ [n1] error creating stats profile ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_53.088.322576384.txt›: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs/heap_profiler/memstats.2020-12-31T23_09_53.088.322576384.txt›: no such file or directory
+E201231 23:09:53.106287 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+W201231 23:10:03.077809 280 server/node.go:704 ⋮ [n1] [n1,s1]: unable to compute metrics: no such file or directory
+I201231 23:10:03.088492 285 server/status/runtime.go:522 ⋮ [n1] runtime stats: 308 MiB RSS, 214 goroutines, 26 MiB/30 MiB/53 MiB GO alloc/idle/total, 151 MiB/185 MiB CGO alloc/total, 0.1 CGO/sec, 3.7/0.8 %(u/s)time, 0.0 %gc (1x), 4.0 KiB/4.3 KiB (r/w)net
+E201231 23:10:03.106452 91 server/status/recorder.go:467 ⋮ [n1,summaries] could not record status summaries: Store 1 could not return descriptor, error: no such file or directory
+E201231 23:10:03.136045 244 util/log/crash_reporting.go:321 ⋮ [n1] Queued as error ‹63dd7f30a12544eea2c81048521f064c›
+F201231 23:10:03.806213 244 vendor/github.com/cockroachdb/pebble/internal/base/filenames.go:132 ⋮ [n1] 000427.log:
+orig err: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data/000427.log›: no such file or directory
+list err: open ‹/home/erikaosgue/erika_work/goland/truora_project/cockroach-data›: no such file or directory
+goroutine 244 [running]:
+github.com/cockroachdb/cockroach/pkg/util/log.getStacks(0x966c000, 0x78ea26, 0xc001e34210, 0x78ea26)
+	/go/src/github.com/cockroachdb/cockroach/pkg/util/log/get_stacks.go:25 +0xb8
+github.com/cockroachdb/cockroach/pkg/util/log.(*loggerT).outputLogEntry(0x966b220, 0x4, 0x1655efe3dd6b0506, 0xf4, 0x8907815, 0x3f, 0x84, 0xc000f1c100, 0xf8, 0xc001d72058, ...)
+	/go/src/github.com/cockroachdb/cockroach/pkg/util/log/clog.go:241 +0xa02
+github.com/cockroachdb/cockroach/pkg/util/log.addStructured(0x62f97e0, 0xc001371320, 0x4, 0x3, 0x523e194, 0x1d, 0xc002740b10, 0x3, 0x3)
+	/go/src/github.com/cockroachdb/cockroach/pkg/util/log/structured.go:52 +0x1ac
+github.com/cockroachdb/cockroach/pkg/util/log.logDepth(0x62f97e0, 0xc001371320, 0x2, 0xc000000004, 0x523e194, 0x1d, 0xc002740b10, 0x3, 0x3)
+	/go/src/github.com/cockroachdb/cockroach/pkg/util/log/log.go:44 +0x8c
+github.com/cockroachdb/cockroach/pkg/util/log.FatalfDepth(...)
+	/go/src/github.com/cockroachdb/cockroach/pkg/util/log/log.go:183
+github.com/cockroachdb/cockroach/pkg/storage.pebbleLogger.Fatalf(...)
+	/go/src/github.com/cockroachdb/cockroach/pkg/storage/pebble.go:369
+github.com/cockroachdb/pebble/internal/base.MustExist(0x64730c0, 0xc000fb54c0, 0xc000ec6780, 0x4b, 0x7f15481991d8, 0xc000fb5520, 0x62581c0, 0xc002740ab0)
+	/go/src/github.com/cockroachdb/cockroach/vendor/github.com/cockroachdb/pebble/internal/base/filenames.go:132 +0x6eb
+github.com/cockroachdb/pebble.(*DB).makeRoomForWrite(0xc000947500, 0xc00228ec80, 0x166f2, 0x20000)
+	/go/src/github.com/cockroachdb/cockroach/vendor/github.com/cockroachdb/pebble/db.go:1343 +0x1190
+github.com/cockroachdb/pebble.(*DB).commitWrite(0xc000947500, 0xc00228ec80, 0x0, 0x0, 0xc001196c80, 0xc00228ec80, 0xc001196c80)
+	/go/src/github.com/cockroachdb/cockroach/vendor/github.com/cockroachdb/pebble/db.go:619 +0xf6
+github.com/cockroachdb/pebble.(*commitPipeline).prepare(0xc001196000, 0xc00228ec80, 0x0, 0x62f97e0, 0xc002936420, 0x6472b20)
+	/go/src/github.com/cockroachdb/cockroach/vendor/github.com/cockroachdb/pebble/commit.go:370 +0x154
+github.com/cockroachdb/pebble.(*commitPipeline).Commit(0xc001196000, 0xc00228ec80, 0x0, 0x0, 0x20)
+	/go/src/github.com/cockroachdb/cockroach/vendor/github.com/cockroachdb/pebble/commit.go:246 +0x6e
+github.com/cockroachdb/pebble.(*DB).Apply(0xc000947500, 0xc00228ec80, 0x96bb308, 0xc001d8e9e0, 0xc000f70000)
+	/go/src/github.com/cockroachdb/cockroach/vendor/github.com/cockroachdb/pebble/db.go:547 +0x107
+github.com/cockroachdb/pebble.(*Batch).Commit(...)
+	/go/src/github.com/cockroachdb/cockroach/vendor/github.com/cockroachdb/pebble/batch.go:727
+github.com/cockroachdb/cockroach/pkg/storage.(*pebbleBatch).Commit(0xc000e3c600, 0x62f9700, 0xc002936420, 0x0)
+	/go/src/github.com/cockroachdb/cockroach/pkg/storage/pebble_batch.go:342 +0x5e
+github.com/cockroachdb/cockroach/pkg/kv/kvserver.(*replicaAppBatch).ApplyToStateMachine(0xc000f700c0, 0x62f97e0, 0xc002936420, 0x7f154810ec20, 0xc000f702d0)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/replica_application_state_machine.go:877 +0xce
+github.com/cockroachdb/cockroach/pkg/kv/kvserver/apply.(*Task).applyOneBatch(0xc001e35798, 0x62f97e0, 0xc002936420, 0x6351320, 0xc000f70270, 0x0, 0x0)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/apply/task.go:286 +0x1d7
+github.com/cockroachdb/cockroach/pkg/kv/kvserver/apply.(*Task).ApplyCommittedEntries(0xc001e35798, 0x62f97e0, 0xc002936420, 0x1, 0x526d3f1)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/apply/task.go:247 +0xb9
+github.com/cockroachdb/cockroach/pkg/kv/kvserver.(*Replica).handleRaftReadyRaftMuLocked(0xc000f70000, 0x62f97e0, 0xc002936420, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/replica_raft.go:765 +0xff9
+github.com/cockroachdb/cockroach/pkg/kv/kvserver.(*Replica).handleRaftReady(0xc000f70000, 0x62f97e0, 0xc002936420, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/replica_raft.go:425 +0x192
+github.com/cockroachdb/cockroach/pkg/kv/kvserver.(*Store).processReady(0xc0012b3500, 0x62f97e0, 0xc0016a0540, 0x4)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/store_raft.go:484 +0x136
+github.com/cockroachdb/cockroach/pkg/kv/kvserver.(*raftScheduler).worker(0xc001124380, 0x62f97e0, 0xc0016a0540)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/scheduler.go:226 +0x29f
+github.com/cockroachdb/cockroach/pkg/kv/kvserver.(*raftScheduler).Start.func2(0x62f97e0, 0xc0016a0540)
+	/go/src/github.com/cockroachdb/cockroach/pkg/kv/kvserver/scheduler.go:166 +0x3e
+github.com/cockroachdb/cockroach/pkg/util/stop.(*Stopper).RunWorker.func1(0xc000782090, 0xc00024d440, 0xc000782080)
+	/go/src/github.com/cockroachdb/cockroach/pkg/util/stop/stopper.go:222 +0x13d
+created by github.com/cockroachdb/cockroach/pkg/util/stop.(*Stopper).RunWorker
+	/go/src/github.com/cockroachdb/cockroach/pkg/util/stop/stopper.go:215 +0xa8
+
+For more context, check log files in: /home/erikaosgue/erika_work/goland/truora_project/cockroach-data/logs
+
+
+****************************************************************************
+
+This node experienced a fatal error (printed above), and as a result the
+process is terminating.
+
+Fatal errors can occur due to faulty hardware (disks, memory, clocks) or a
+problem in CockroachDB. With your help, the support team at Cockroach Labs
+will try to determine the root cause, recommend next steps, and we can
+improve CockroachDB based on your report.
+
+Please submit a crash report by following the instructions here:
+
+    https://github.com/cockroachdb/cockroach/issues/new/choose
+
+If you would rather not post publicly, please contact us directly at:
+
+    support@cockroachlabs.com
+
+The Cockroach Labs team appreciates your feedback.

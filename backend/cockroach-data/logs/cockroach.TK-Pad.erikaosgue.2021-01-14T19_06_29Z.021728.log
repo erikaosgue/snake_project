@@ -1,0 +1,5 @@
+I210114 19:06:29.477927 1 util/log/sync_buffer.go:195 ⋮ [config] file created at: 2021/01/14 19:06:29
+I210114 19:06:29.477936 1 util/log/sync_buffer.go:195 ⋮ [config] running on machine: ‹TK-Pad›
+I210114 19:06:29.477943 1 util/log/sync_buffer.go:195 ⋮ [config] binary: CockroachDB CCL v20.2.3 (x86_64-unknown-linux-gnu, built 2020/12/14 18:33:39, go1.13.14)
+I210114 19:06:29.477947 1 util/log/sync_buffer.go:195 ⋮ [config] arguments: ‹[cockroach start-single-node --insecure --listen-addr=localhost:26257 --http-addr=localhost:8080]›
+I210114 19:06:29.477954 1 util/log/sync_buffer.go:195 ⋮ [config] line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓

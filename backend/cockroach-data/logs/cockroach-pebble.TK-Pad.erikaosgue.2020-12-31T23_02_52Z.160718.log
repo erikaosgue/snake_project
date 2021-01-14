@@ -1,0 +1,31 @@
+I201231 23:02:52.994894 103 util/log/sync_buffer.go:195 ⋮ [config] file created at: 2020/12/31 23:02:52
+I201231 23:02:52.994915 103 util/log/sync_buffer.go:195 ⋮ [config] running on machine: ‹TK-Pad›
+I201231 23:02:52.994935 103 util/log/sync_buffer.go:195 ⋮ [config] binary: CockroachDB CCL v20.2.3 (x86_64-unknown-linux-gnu, built 2020/12/14 18:33:39, go1.13.14)
+I201231 23:02:52.994954 103 util/log/sync_buffer.go:195 ⋮ [config] arguments: ‹[cockroach start-single-node --insecure --listen-addr=localhost:26257 --http-addr=localhost:8080]›
+I201231 23:02:52.994976 103 util/log/sync_buffer.go:195 ⋮ [config] line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I201231 23:02:52.994591 103 vendor/github.com/cockroachdb/pebble/version_set.go:142 ⋮ [n?] [JOB 1] MANIFEST created 000001
+I201231 23:02:52.996063 103 vendor/github.com/cockroachdb/pebble/open.go:295 ⋮ [n?] [JOB 1] WAL created 000002
+I201231 23:02:52.998022 125 vendor/github.com/cockroachdb/pebble/table_stats.go:118 ⋮ [n?] [JOB 2] all initial table stats loaded
+I201231 23:02:53.022047 103 vendor/github.com/cockroachdb/pebble/compaction.go:1559 ⋮ [n?] [JOB 1] flushing: sstable created 000416
+I201231 23:02:53.041391 103 vendor/github.com/cockroachdb/pebble/open.go:295 ⋮ [n?] [JOB 1] WAL created 000417
+I201231 23:02:53.043347 103 vendor/github.com/cockroachdb/pebble/version_set.go:442 ⋮ [n?] [JOB 1] MANIFEST created 000418
+I201231 23:02:53.050828 103 vendor/github.com/cockroachdb/pebble/compaction.go:2298 ⋮ [n?] [JOB 1] WAL deleted 000395
+I201231 23:02:53.058219 103 vendor/github.com/cockroachdb/pebble/compaction.go:2298 ⋮ [n?] [JOB 1] WAL deleted 000402
+I201231 23:02:53.065560 103 vendor/github.com/cockroachdb/pebble/compaction.go:2298 ⋮ [n?] [JOB 1] WAL deleted 000409
+I201231 23:02:53.065695 103 vendor/github.com/cockroachdb/pebble/compaction.go:2305 ⋮ [n?] [JOB 1] MANIFEST deleted 000071
+I201231 23:02:53.065924 169 vendor/github.com/cockroachdb/pebble/compaction.go:1369 ⋮ [n?] [JOB 3] compacting L0 [000416] (89 K) + L6 [000411 000412 000413 000414 000415] (19 M)
+I201231 23:02:53.066084 168 vendor/github.com/cockroachdb/pebble/table_stats.go:118 ⋮ [n?] [JOB 2] all initial table stats loaded
+I201231 23:02:53.066643 169 vendor/github.com/cockroachdb/pebble/compaction.go:1559 ⋮ [n?] [JOB 3] compacting: sstable created 000420
+I201231 23:02:53.096845 217 vendor/github.com/cockroachdb/pebble/db.go:1366 ⋮ [n1] [JOB 4] WAL created 000421
+I201231 23:02:53.320842 169 vendor/github.com/cockroachdb/pebble/compaction.go:1559 ⋮ [n1] [JOB 3] compacting: sstable created 000422
+I201231 23:02:53.578068 169 vendor/github.com/cockroachdb/pebble/compaction.go:1559 ⋮ [n1] [JOB 3] compacting: sstable created 000423
+I201231 23:02:53.712189 169 vendor/github.com/cockroachdb/pebble/compaction.go:1559 ⋮ [n1] [JOB 3] compacting: sstable created 000424
+I201231 23:02:53.901308 169 vendor/github.com/cockroachdb/pebble/compaction.go:1559 ⋮ [n1] [JOB 3] compacting: sstable created 000425
+I201231 23:02:54.037994 169 vendor/github.com/cockroachdb/pebble/compaction.go:1408 ⋮ [n1] [JOB 3] compacted L0 [000416] (89 K) + L6 [000411 000412 000413 000414 000415] (19 M) -> L6 [000420 000422 000423 000424 000425] (19 M), in 1.0s, output rate 19 M/s
+I201231 23:02:54.040328 169 vendor/github.com/cockroachdb/pebble/compaction.go:2312 ⋮ [n1] [JOB 3] sstable deleted 000411
+I201231 23:02:54.044455 169 vendor/github.com/cockroachdb/pebble/compaction.go:2312 ⋮ [n1] [JOB 3] sstable deleted 000412
+I201231 23:02:54.046842 169 vendor/github.com/cockroachdb/pebble/compaction.go:2312 ⋮ [n1] [JOB 3] sstable deleted 000413
+I201231 23:02:54.049937 169 vendor/github.com/cockroachdb/pebble/compaction.go:2312 ⋮ [n1] [JOB 3] sstable deleted 000414
+I201231 23:02:54.051820 169 vendor/github.com/cockroachdb/pebble/compaction.go:2312 ⋮ [n1] [JOB 3] sstable deleted 000415
+I201231 23:02:54.051967 169 vendor/github.com/cockroachdb/pebble/compaction.go:2312 ⋮ [n1] [JOB 3] sstable deleted 000416
+I201231 23:05:13.113634 238 vendor/github.com/cockroachdb/pebble/db.go:1366 ⋮ [n1] [JOB 5] WAL created 000426

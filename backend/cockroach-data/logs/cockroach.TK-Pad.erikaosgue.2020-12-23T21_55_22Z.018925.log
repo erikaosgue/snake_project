@@ -1,0 +1,27 @@
+I201223 21:55:22.681784 1 util/log/sync_buffer.go:195 ⋮ [config] file created at: 2020/12/23 21:55:22
+I201223 21:55:22.681790 1 util/log/sync_buffer.go:195 ⋮ [config] running on machine: ‹TK-Pad›
+I201223 21:55:22.681794 1 util/log/sync_buffer.go:195 ⋮ [config] binary: CockroachDB CCL v20.2.3 (x86_64-unknown-linux-gnu, built 2020/12/14 18:33:39, go1.13.14)
+I201223 21:55:22.681798 1 util/log/sync_buffer.go:195 ⋮ [config] arguments: ‹[cockroach start-single-node]›
+I201223 21:55:22.681806 1 util/log/sync_buffer.go:195 ⋮ [config] line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I201223 21:55:22.681687 1 server/status/recorder.go:605 ⋮ ‹available memory from cgroups is unsupported, using system memory 15 GiB instead: can't read available memory from cgroup v2 at /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: open /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: no such file or directory›
+W201223 21:55:22.681852 1 cli/start.go:983 ⋮ ‹Using the default setting for --cache (128 MiB).›
+‹  A significantly larger value is usually needed for good performance.›
+‹  If you have a dedicated server a reasonable setting is --cache=.25 (3.8 GiB).›
+I201223 21:55:22.682035 1 server/status/recorder.go:605 ⋮ ‹available memory from cgroups is unsupported, using system memory 15 GiB instead: can't read available memory from cgroup v2 at /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: open /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: no such file or directory›
+I201223 21:55:22.682048 1 cli/start.go:1164 ⋮ ‹CockroachDB CCL v20.2.3 (x86_64-unknown-linux-gnu, built 2020/12/14 18:33:39, go1.13.14)›
+I201223 21:55:22.682485 1 server/status/recorder.go:605 ⋮ ‹available memory from cgroups is unsupported, using system memory 15 GiB instead: can't read available memory from cgroup v2 at /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: open /sys/fs/cgroup/unified/user.slice/user-1000.slice/user@1000.service/memory.max: no such file or directory›
+I201223 21:55:22.682498 1 server/config.go:434 ⋮ system total memory: ‹15 GiB›
+I201223 21:55:22.682515 1 server/config.go:436 ⋮ server configuration:
+‹max offset             500000000›
+‹cache size             128 MiB›
+‹SQL memory pool size   3.8 GiB›
+‹scan interval          10m0s›
+‹scan min idle time     10ms›
+‹scan max idle time     1s›
+‹event log enabled      true›
+I201223 21:55:22.682554 1 cli/start.go:968 ⋮ process identity: ‹uid 1000 euid 1000 gid 1000 egid 1000›
+I201223 21:55:22.685447 1 cli/start.go:504 ⋮ GEOS loaded from directory ‹/usr/local/lib/cockroach›
+I201223 21:55:22.685492 1 cli/start.go:509 ⋮ starting cockroach node
+E201223 21:55:22.687105 1 cli/error.go:398 ⋮ ‹ERROR: cannot load certificates.›
+‹Check your certificate settings, set --certs-dir, or use --insecure for insecure clusters.›
+‹failed to start server: problem using security settings: no certificates found; does certs dir exist?›
