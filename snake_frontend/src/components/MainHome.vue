@@ -63,7 +63,7 @@ export default {
         this.data = response.data;
         for (var i = 0; i < this.data.length; i++) {
           var user = this.data[i];
-         
+
           var object = {
             sortable: false,
             name: user.name,
@@ -83,9 +83,10 @@ export default {
   methods: {
     postUser() {
       const params = {
-         name: this.name
+        name: this.name
       };
-      axios.post("http://localhost:8081/users", params)
+      axios
+        .post("http://localhost:8081/users", params)
         .then(response => {
           if (response.data.status == "Invalid Name")
             alert("Name: " + this.name + " is invalid!");
@@ -93,8 +94,8 @@ export default {
           if (response.data.status == "Name Exists")
             alert("Name " + this.name + " already exists !");
 
-          if (response.data.status == "User Created") 
-            console.log("success");
+          if (response.data.status == "User Created") console.log("success")
+            this.$router.push("UserHome")
         })
         .catch(e => {
           console.log("error: =>", e.message);
@@ -105,10 +106,10 @@ export default {
       for (var i = 0; i < this.data.length; i++) {
         var user = this.data[i];
         if (user.name == this.name.toUpperCase()) {
-          sessionStorage.setItem('user', JSON.stringify(user));
-          console.log(sessionStorage.user)
-          this.$router.push('UserHome')
-          return
+          sessionStorage.setItem("user", JSON.stringify(user));
+          console.log(sessionStorage.user);
+          this.$router.push("UserHome");
+          return;
         }
       }
       alert("User does not exits");

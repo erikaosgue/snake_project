@@ -188,6 +188,7 @@ func UpdateScore(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&u)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
+		w.Write([]byte(`{"status":"error"}`))
 		// http.Error(w, fmt.Sprintf("Contact with phonenumber: %s not found", phoneNumber), 404)
 		return
 	}

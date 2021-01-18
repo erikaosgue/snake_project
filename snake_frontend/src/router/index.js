@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// import { component } from "vue/types/umd";
 import Home from "../views/Home.vue";
 import UserHome from "../views/UserHome.vue";
+import Game from "../views/Game.vue";
 
 Vue.use(VueRouter);
 
@@ -15,11 +17,16 @@ const routes = [
     path: "/UserHome",
     name: "UserHome",
     component: UserHome
+  },
+  {
+    path: "/Game",
+    name: "Game",
+    component: Game
   }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   routes
 });
 
