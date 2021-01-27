@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <Navigation />
     <MainHome />
     <Footer />
@@ -19,7 +18,6 @@ export default {
     MainHome,
     Navigation,
     Footer
-    // HelloWorld
   }
 };
 </script>

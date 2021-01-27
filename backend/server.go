@@ -4,78 +4,60 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	_ "reflect"
-
-	// "go/printer"
-	_ "io/ioutil"
+	"reflect"
 	"log"
 	"net/http"
-
 	"regexp"
 	"strings"
-
 	"github.com/go-chi/chi"
-	_ "github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
 	_ "github.com/lib/pq"
 	"github.com/nu7hatch/gouuid"
-	_ "github.com/sqs/goreturns/returns"
 )
 
-// User is the ...
+// User is the Main user
 type User struct {
 	ID string `json:"id"`
 	Name string `json:"name"`
 	Score int `json:"score"`
 }
 
-// Users is ..
+// Users is list of users..
 type Users []User
 
 var db *sql.DB
 var router *chi.Mux
 
+//userExist checks in the database if the username exist
+// return the user struct, or empty otherwise
 func userExist(name string) User {
-	
-	rows, err:= db.Query("SELECT * FROM users")
-	
-	if err != nil {
+
+	u := User{}
+	fmt.Println(name)
+	fmt.Println(reflect.TypeOf(name))
+
+	var theQuery = "SELECT * FROM users WHERE name=$1"
+
+	row := db.QueryRow(theQuery, name)
+	err := row.Scan(&u.ID, &u.Name, &u.Score);
+
+	if err != nil && err != sql.ErrNoRows {
 		fmt.Println(err.Error())	
-		panic("failed to connect database")
 	}
-	
-	listUsers := Users{}
-	for rows.Next() {
-		p := User{}
-		if err := rows.Scan(&p.ID, &p.Name, &p.Score); err != nil {
-			log.Fatal(err)
-			
-		}
-		
-		listUsers = append(listUsers, p)
-	}
-	defer rows.Close()
-	
-	for _, user := range listUsers {
-		if user.Name == name{
-			fmt.Println("here=>", name)
-			return user
-		}
-	}
-	return User{}
-	
+
+	return u
+
 }
-//ListAllUsers ...
+//ListAllUsers get all users from the database, return a list
 func ListAllUsers(w http.ResponseWriter, r *http.Request){
-	
-	// rows, err:= db.Query("SELECT * FROM Users ORDER BY User DESC LIMIT 10")
-	rows, err:= db.Query("SELECT * FROM users")
-	
+
+	rows, err:= db.Query("SELECT * FROM users LIMIT 20")
+
 	if err != nil {
-		fmt.Println(err.Error())	
+		fmt.Println(err.Error())
 		panic("failed to connect database")
 	}
-	
+
 	listUsers := Users{}
 	for rows.Next() {
 		p := User{}
@@ -86,21 +68,21 @@ func ListAllUsers(w http.ResponseWriter, r *http.Request){
 
 	}
 	defer rows.Close()
-	
+
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
 	json.NewEncoder(w).Encode(listUsers)
 }
-//ListBestScores ..
+//ListBestScores return a list of the 20 best scores
 func ListBestScores(w http.ResponseWriter, r *http.Request){
-	fmt.Println("Listbest scores")
-	// rows, err:= db.Query("SELECT * FROM Users ORDER BY User DESC LIMIT 10")
-	rows, err:= db.Query("SELECT * FROM users ORDER BY score DESC")
 	
+	rows, err:= db.Query("SELECT * FROM users ORDER BY score DESC LIMIT 20")
+
 	if err != nil {
-		fmt.Println(err.Error())	
+		fmt.Println(err.Error())
 		panic("failed to connect database")
 	}
-	
+
 	listUsers := Users{}
 	for rows.Next() {
 		p := User {}
@@ -111,29 +93,24 @@ func ListBestScores(w http.ResponseWriter, r *http.Request){
 
 	}
 	defer rows.Close()
-	
+
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
 	json.NewEncoder(w).Encode(listUsers)
 }
 
 
-//CreateUser ...
+//CreateUser creaates and returns a new user, error otherwise
 func CreateUser(w http.ResponseWriter, r *http.Request){
 
 		u := User{}
-		
-		// if err := json.Unmarshal(r.Body, &u); err != nil {
-		// // handle error
-		// }
+
 		err:= json.NewDecoder(r.Body).Decode(&u)
 
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
-			// http.Error(w, fmt.Sprintf("Contact with phonenumber: %s not found", phoneNumber), 404)
 			return
 		}
-		// fmt.Fprintf(w, "%+v", u)
-		// fmt.Fprintf(w, "u: %+v", u)
 
 		// Checks if name is Empty
 		fmt.Printf("name: [%+v]\n", u.Name)
@@ -142,7 +119,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request){
 			w.Write([]byte(`{"status":"Invalid Name"}`))
 			return
 		}
-		
+
 
 		//start validation for username
 		var isStringAlphabetic = regexp.MustCompile(`^[A-Za-z][A-Za-z0-9]*$`).MatchString
@@ -151,45 +128,59 @@ func CreateUser(w http.ResponseWriter, r *http.Request){
 			w.Write([]byte(`{"status":"Invalid Name"}`))
 			return
 		}
-		
-		fmt.Printf("Valid User Name: [%+v]\n", u.Name)
+
 		//make the Name Uppercase
-		name := strings.ToUpper(u.Name)
-		
+		u.Name = strings.ToUpper(u.Name)
+
 		// check if username already exists
-		user := userExist(name)
+		user := userExist(u.Name)
 		if user != (User{}) {
 			fmt.Println("Name already exists")
 			w.Write([]byte(`{"status":"Name Exists"}`))
-			// retornar el usuario
-			// json.NewEncoder(w).Encode(user)
 			return
 		}
-		
+
 		//if it does exist create the user with a random ID and score = 0
 		uuid, err := uuid.NewV4()
-		id := uuid.String()
-		fmt.Println("Entering to database id and name ==>", id, name )
+		u.ID = uuid.String()
+		u.Score = 0
+
 		query := "INSERT INTO users (id, name, score) VALUES ($1, $2, $3);"
-		_, err = db.Exec(query, id, name, 0); 
+		_, err = db.Exec(query, u.ID, u.Name, u.Score);
 		if err != nil {
 			log.Fatal(err)
 		}
-		w.Write([]byte(`{"status":"User Created"}`))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(201)
+		json.NewEncoder(w).Encode(u)
 
 }
-// UpdateScore ...
-func UpdateScore(w http.ResponseWriter, r *http.Request) {
+
+//getUser return the user struct base on the name from url
+func getUser(w http.ResponseWriter, r *http.Request){
+
+		u := User{}
+		u.Name = chi.URLParam(r, "name")
 	
+		//checks if user already exists
+		user := userExist(u.Name)
+
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(200)
+		json.NewEncoder(w).Encode(user)
+
+}
+// UpdateScore will update the score base on the user id
+func UpdateScore(w http.ResponseWriter, r *http.Request) {
+
 	u := User{}
 	id := chi.URLParam(r, "id")
 
-	
+
 	err := json.NewDecoder(r.Body).Decode(&u)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		w.Write([]byte(`{"status":"error"}`))
-		// http.Error(w, fmt.Sprintf("Contact with phonenumber: %s not found", phoneNumber), 404)
 		return
 	}
 	fmt.Fprintf(w, "Person: %+v", u)
@@ -202,14 +193,12 @@ func UpdateScore(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// ALl handlers that redirect to all functions
 func handleRequests() {
-	fmt.Println("Start here 2")
 	router := chi.NewRouter()
 
 	router.Use(cors.Handler(cors.Options{
-    // AllowedOrigins: []string{"https://foo.com"}, // Use this to allow specific origin hosts
     AllowedOrigins:   []string{"*"},
-    // AllowOriginFunc:  func(r *http.Request, origin string) bool { return true },
     AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
     AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
     ExposedHeaders:   []string{"Link"},
@@ -218,29 +207,32 @@ func handleRequests() {
 
 	router.Post("/users", CreateUser)
 	router.Get("/users", ListAllUsers)
+	router.Get("/users/{name}", getUser)
 	router.Get("/scores", ListBestScores)
 	router.Put("/users/{id}", UpdateScore)
 
 	log.Fatal(http.ListenAndServe(":8081", router))
 }
-func init() { 
 
-	
-	fmt.Println("Start here 1")
+// Init will open the database
+func init() {
+
 	var err error
     db, err = sql.Open("postgres","user=snake dbname=snake_game sslmode=disable port=26257")
+	
 	if err != nil {
 		log.Fatal("error connecting to the database: ", err, nil)
 	}
-    
+
     if err != nil {
 		log.Fatal("error connecting to the database: ", err, nil)
 	}
 }
 
 func main() {
+	
 	fmt.Println("Requesting serving :8081")
-	
+
 	handleRequests()
-	
+
 }

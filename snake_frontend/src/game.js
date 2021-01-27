@@ -2,14 +2,11 @@ import Phaser from "phaser";
 import axios from 'axios';
 import router from "@/router/index.js"
 
-
-
-
 var config = {
   type: Phaser.AUTO,
-  width: 800,
+  width: 810,
   height: 600,
-  backgroundColor: "#D4FDC8",
+  backgroundColor: "#e5e5e5",
   physics: {
     default: "arcade",
     arcade: {
@@ -22,54 +19,54 @@ var config = {
     update: update
   }
 };
-var gameOverText
-var snake;
-var food;
-var badfood;
-var cursors;
+
+let gameOverText
+let snake;
+let food;
+let badfood;
+let cursors;
+let obstacleOne;
+let obstacleTwo;
+
 
 //  Direction consts
-var UP = 0;
-var DOWN = 1;
-var LEFT = 2;
-var RIGHT = 3;
+let UP = 0;
+let DOWN = 1;
+let LEFT = 2;
+let RIGHT = 3;
 
-var x_grid = 50; //40 default
-var y_grid = 37; //30 default
+let x_grid = 45 
+let y_grid = 32
 
-var timeIncrement = 10000;
-var badfoodIsSeen = false;
-var lastObstacleOne = true;
-var score = 0;
+let timeIncrement = 10000;
+let badfoodIsSeen = false;
+let lastObstacleOne = true;
+let score = 0;
 
-// var game = new Phaser.Game(config);
-var test = {
+let phaser = {
   game: config
 };
 
 
 function preload() {
    
-  this.load.image("badfood", 'assets/applegreen5.png');
+  this.load.image("badfood", 'assets/apple5.png');
   this.load.image("body", 'assets/body5.png');
-  this.load.image("food", 'assets/apple5.png');
+  this.load.image("food", 'assets/applegreen5.png');
   this.load.image("obstacle", "assets/bomb5.png");
   this.load.image("obstacle2", "assets/box_obstacle4.png");
   this.load.image("head_left", "assets/Graphics/head_left.png");
 }
-// var food;
-// var badfood;
-// var snake;
-var obstacleOne;
-var obstacleTwo;
 
-//  Create our keyboard controls
-// var cursors;
 function create() {
 
+    this.add.rectangle(19, 300, 60, 600, 0x6666ff);
+    this.add.rectangle(786, 300, 60, 600, 0x6666ff);
+    this.add.rectangle(400, 18, 750, 60, 0x6666ff);
+    this.add.rectangle(400, 578, 750, 60, 0x6666ff);
   
-    var scoreText = this.add.text(16, 16, "score: 0", {
-    fontSize: "32px",
+    var scoreText = this.add.text(48, 10, "score: 0", {
+    fontSize: "28px",
     fill: "#000"
     });
 
@@ -81,7 +78,7 @@ function create() {
     gameOverText.setOrigin(0.5);
     gameOverText.visible = false;
 
-  //create the objects of the game
+  //create the objects of the game Food, badFood, obstacles
 
   class Food extends Phaser.GameObjects.Image{
     // Extends: Phaser.GameObjects.Image,
@@ -90,7 +87,7 @@ function create() {
       
       super(scene);
       
-
+      this.name = "greenApple"
       this.setTexture("food");
       this.setPosition(x * 16, y * 16);
       this.setOrigin(0);
@@ -111,6 +108,8 @@ function create() {
 
     constructor (scene, x, y) {
      super(scene);
+      
+      this.name = "redApple"
 
       this.setTexture("badfood");
       this.setPosition(x * 16, y * 16);
@@ -124,6 +123,7 @@ function create() {
     constructor(scene, x, y) {
       super(scene);
 
+      this.name = "obstacle_1"
       this.setTexture("obstacle");
       this.setPosition(x * 16, y * 16);
       this.setOrigin(0);
@@ -135,6 +135,8 @@ function create() {
 
     constructor(scene, x, y) {
       super(scene);
+      
+      this.name = "obstacle_2"
 
       this.setTexture("obstacle2");
       this.setPosition(x * 16, y * 16);
@@ -145,22 +147,18 @@ function create() {
   }
 
   class Snake {
+    
     constructor(scene, x, y) {
-      this.headPosition = new Phaser.Geom.Point(x, y);
-
-      this.body = scene.add.group();
-
-      this.head = this.body.create(x * 16, y * 16, 'body');
       
-
+      this.headPosition = new Phaser.Geom.Point(x, y);
+      this.body = scene.add.group();
+      this.head = this.body.create(x * 16, y * 16, 'body');
       this.head.setOrigin(0);
 
       this.alive = true;
 
       this.speed = 100;
-
       this.moveTime = 0;
-
       this.tail = new Phaser.Geom.Point(x, y);
 
       this.heading = RIGHT;
@@ -202,59 +200,48 @@ function create() {
        * Based on the heading property (which is the direction the pgroup pressed)
        * we update the headPosition value accordingly.
        *
-       * The Math.wrap call allow the snake to wrap around the screen, so when
-       * it goes off any of the sides it re-appears on the other.
        */
       switch (this.heading) {
         case LEFT:
         // case for snake diying when crash with the wall
-          if (this.headPosition.x  == 0) {
+         
+          if (this.headPosition.x  == 3) {
             console.log(this.headPosition.x)
             snake.alive = false;
           }
-          this.headPosition.x = this.headPosition.x - 1;
-
-
-          // Uncoment for the snake reapearing in the other side without dying
-          // this.headPosition.x = Phaser.Math.Wrap(
-          //   this.headPosition.x - 1, 0, x_grid);
+          else {
+            this.headPosition.x = this.headPosition.x - 1;
+          }
           break;
 
         case RIGHT:
-          if (this.headPosition.x  == x_grid - 1){
+          if (this.headPosition.x  == x_grid + 1){
+            console.log(this.headPosition.x)
             snake.alive = false;
           }
-          this.headPosition.x = this.headPosition.x + 1
-          
-          // this.headPosition.x = Phaser.Math.Wrap(
-          //   this.headPosition.x + 1,
-          //   0,
-          //   x_grid
-          // );
+          else {
+            this.headPosition.x = this.headPosition.x + 1
+          }
           break;
 
         case UP:
-        if (this.headPosition.y == 0) {
-          console.log(this.headPosition.y)
-          snake.alive = false;
-        }
-        this.headPosition.y = this.headPosition.y -1;
-
-          // this.headPosition.y = Phaser.Math.Wrap(
-          //   this.headPosition.y - 1,
-          //   0,
-          //   y_grid
-          // );
+          if (this.headPosition.y == 3) {
+            console.log(this.headPosition.y)
+            snake.alive = false;
+          }
+          else {
+            this.headPosition.y = this.headPosition.y -1;
+          }
           break;
 
         case DOWN:
-          if (this.headPosition.y == y_grid - 1) {
+          if (this.headPosition.y == y_grid + 1) {
+            console.log(this.headPosition.y)
             snake.alive = false;
           }
-          this.headPosition.y = this.headPosition.y + 1
-
-          // this.headPosition.y = Phaser.Math.Wrap(
-          //   this.headPosition.y + 1, 0, y_grid);
+          else {
+            this.headPosition.y = this.headPosition.y + 1
+          }
           break;
       }
 
@@ -269,7 +256,7 @@ function create() {
         this.tail
       );
 
-      var hitBody = Phaser.Actions.GetFirst(
+      let hitBody = Phaser.Actions.GetFirst(
         this.body.getChildren(),
         { x: this.head.x, y: this.head.y },
         1
@@ -279,7 +266,6 @@ function create() {
 
         this.alive = false;
 
-        // return false;
       } else {
         //  Update the timer ready for the next movement
         this.moveTime = time + this.speed;
@@ -289,35 +275,29 @@ function create() {
     }
 
     grow() {
-      var newPart = this.body.create(this.tail.x, this.tail.y, "body");
-
+      let newPart = this.body.create(this.tail.x, this.tail.y, "body");
       newPart.setOrigin(0);
     }
     shrink() {
-      var snakeLength = this.body.children.entries.length;
+      let snakeLength = this.body.children.entries.length;
       if (snakeLength <= 2) {
         this.alive = false;
         return;
       }
-      var image1 = this.body.children.entries[snakeLength - 1];
-      var image2 = this.body.children.entries[snakeLength - 2];
+
+      let image1 = this.body.children.entries[snakeLength - 1];
+      let image2 = this.body.children.entries[snakeLength - 2];
       this.body.remove(image1, true);
       this.body.remove(image2, true);
-      // image.destroy();
+      
     }
 
-    collideWithFood(food) {
+    collideWith(food) {
       if (this.head.x === food.x && this.head.y === food.y) {
-        this.grow();
-
-        food.eat();
-        score += 2;
-        scoreText.setText("Score: " + score);
-
-        // //  For every 5 items of food eaten we'll increase the snake speed a little
-        // if (this.speed > 20 && food.total % 5 === 0) {
-        //   this.speed -= 5;
-        // }
+          this.grow();
+          food.eat();
+          score += 2;
+          scoreText.setText("Score: " + score);
 
         return true;
       } else {
@@ -326,8 +306,6 @@ function create() {
     }
     collideWithBadFood(badfood) {
       if (this.head.x === badfood.x && this.head.y === badfood.y) {
-        score += 4;
-        scoreText.setText("Score: " + score);
         return true;
       } else {
         return false;
@@ -347,11 +325,12 @@ function create() {
     }
 
     updateGrid(grid) {
+
       //  Remove all body pieces from valid positions list
       this.body.children.each(function(segment) {
-        var bx = segment.x / 16;
-        var by = segment.y / 16;
-
+        let bx = segment.x / 16;
+        let by = segment.y / 16;
+        // grid will be false where the body is
         grid[by][bx] = false;
       });
 
@@ -382,7 +361,8 @@ function create() {
     }
   }
   
-  food = new Food(this, 3, 4);
+  // Initializion the objects
+  food = new Food(this, 25, 25);
   badfood = new BadFood(this, -2, -2);
   snake = new Snake(this, 8, 8);
   obstacleOne = new ObstacleOne(this, -3, -3);
@@ -403,20 +383,27 @@ function update(time, delta) {
     }
     snake.gameOver(delta);
   }
-  if (food.addObstacle === 3) {
+  // Move all obstacle outside to the screen 
+  // after eating 5 apples
+  if (food.addObstacle === 5) {
+    obstacleOne.x = 10000;
+    obstacleOne.y = 10000;
+    obstacleTwo.x = 10000;
+    obstacleTwo.y = 10000;
+
+  }
+  // Adds a new obstacle to the screen after 10 apples
+  if (food.addObstacle === 10) {
     food.addObstacle = 0;
     if (lastObstacleOne === true) {
       repositionFood("obstacleTwo");
-      obstacleOne.x = 100000;
-      obstacleOne.y = 100000;
       lastObstacleOne = false;
     } else {
       repositionFood("obstacleOne");
-      obstacleTwo.x = 10000;
-      obstacleTwo.y = 10000;
       lastObstacleOne = true;
     }
   }
+  // Adds red apple that shrinks the snake, every 10 seconds
   if (time > timeIncrement) {
     if (badfoodIsSeen === true) {
       badfood.x = 1000;
@@ -429,7 +416,6 @@ function update(time, delta) {
     timeIncrement = timeIncrement + 10000;
   }
 
-  // if food.total %
   /**
    * Check which key is pressed, and then change the direction the snake
    * is heading based on that. The checks ensure you don't double-back
@@ -450,17 +436,19 @@ function update(time, delta) {
   if (snake.update(time)) {
     //  If the snake updated, we need to check for collision against food
 
-    if (snake.collideWithFood(food)) {
+    if (snake.collideWith(food)) {
       repositionFood("food");
     } 
     else if (snake.collideWithBadFood(badfood)) {
       snake.shrink();
+      // Puts the red apple outside to the screen
       badfood.x = 1000;
       badfood.y = 1000;
       badfoodIsSeen = false;
       timeIncrement += 10000;
     } 
     else if (snake.collideWithObstacle(obstacleOne, obstacleTwo)) {
+      //snake dies if collide with obstacle
       snake.alive = false;
     }
   }
@@ -480,12 +468,12 @@ function repositionFood(typeFood) {
   //  are valid for the new piece of food
 
   //  A Grid we'll use to reposition the food each time it's eaten
-  var testGrid = [];
+  let testGrid = [];
 
-  for (var y = 0; y < y_grid; y++) {
+  for (let y = 3; y <= y_grid; y++) {
     testGrid[y] = [];
 
-    for (var x = 0; x < x_grid; x++) {
+    for (let x = 3; x <= x_grid; x++) {
       testGrid[y][x] = true;
     }
   }
@@ -493,23 +481,23 @@ function repositionFood(typeFood) {
   snake.updateGrid(testGrid);
 
   //  Purge out false positions
-  var validLocations = [];
-  var typeF;
+  let validLocations = [];
+  let typeF;
 
-  for (y = 0; y < y_grid; y++) {
-    for (x = 0; x < x_grid; x++) {
+  for (let y = 4; y < y_grid; y++) {
+    for (let x = 4; x < x_grid; x++) {
+      //  Is this position valid for food? If so, add it here ...
       if (testGrid[y][x] === true) {
-        //  Is this position valid for food? If so, add it here ...
         validLocations.push({ x: x, y: y });
       }
     }
   }
 
   if (validLocations.length > 0) {
-    //  Use the RNG to pick a random food position
-    // var pos = Phaser.Math.RND.pick(validLocations);
     let len = validLocations.length
     let ranNum = Math.floor(Math.random() * (len + 1)); 
+    // get a valid location from the array validLocations, 
+    // will give x, y position
     var pos = validLocations[ranNum]
 
     //  And place it
@@ -522,13 +510,14 @@ function repositionFood(typeFood) {
     } else {
       typeF = obstacleTwo;
     }
-    typeF.setPosition(pos.x * 16, pos.y * 16);
-
+    //typeF is the object to setPosition at x, y position
+    typeF.setPosition(pos.x *16 , pos.y * 16);
     return true;
-  } else {
+  } 
+  else {
     return false;
   }
 }
 
-export default test;
+export default phaser;
 

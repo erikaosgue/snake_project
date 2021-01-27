@@ -1,0 +1,8 @@
+I210127 01:33:54.042220 26 util/log/sync_buffer.go:195 ⋮ [config] file created at: 2021/01/27 01:33:54
+I210127 01:33:54.042235 26 util/log/sync_buffer.go:195 ⋮ [config] running on machine: ‹TK-Pad›
+I210127 01:33:54.042242 26 util/log/sync_buffer.go:195 ⋮ [config] binary: CockroachDB CCL v20.2.3 (x86_64-unknown-linux-gnu, built 2020/12/14 18:33:39, go1.13.14)
+I210127 01:33:54.042248 26 util/log/sync_buffer.go:195 ⋮ [config] arguments: ‹[cockroach start-single-node --insecure --listen-addr=localhost:26257 --http-addr=localhost:8080]›
+I210127 01:33:54.042256 26 util/log/sync_buffer.go:195 ⋮ [config] line format: [IWEF]yymmdd hh:mm:ss.uuuuuu goid file:line msg utf8=✓
+I210127 01:33:54.042003 26 vendor/github.com/cockroachdb/pebble/version_set.go:142 ⋮ [n?] [JOB 1] MANIFEST created 000001
+I210127 01:33:54.043199 26 vendor/github.com/cockroachdb/pebble/open.go:295 ⋮ [n?] [JOB 1] WAL created 000002
+I210127 01:33:54.045095 112 vendor/github.com/cockroachdb/pebble/table_stats.go:118 ⋮ [n?] [JOB 2] all initial table stats loaded
